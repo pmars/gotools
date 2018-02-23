@@ -18,3 +18,10 @@ func TestData2Str(t *testing.T) {
 func TestS2B(t *testing.T) {
 	fmt.Println(S2B("abc"))
 }
+
+func TestRandStringRunes(t *testing.T) {
+	fmt.Println(RandStringRunes(10))
+	fmt.Println(RandStringRunes(8))
+	fmt.Println(RandStringRunes(4))
+	fmt.Println(RandStringRunes(35))
+}
