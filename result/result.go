@@ -1,4 +1,4 @@
-package tools
+package result
 
 import (
 	"github.com/gin-gonic/gin"
@@ -9,7 +9,7 @@ const (
 )
 
 // 设置返回内容的错误信息，返回内容之前调用
-func (rm *ResultMap) SetReturnMsg(c *gin.Context) {
+func (rm *RstMap) SetReturnMsg(c *gin.Context) {
 	errCode := GetCode(c)
 
 	rm.Code = errCode.Code
@@ -19,12 +19,12 @@ func (rm *ResultMap) SetReturnMsg(c *gin.Context) {
 
 // 获取http.context中保存的Return信息
 // 接口主要在Middleware和Controller中使用，获取对应的信息，返回信息
-func GetResultMap(c *gin.Context) *ResultMap {
+func GetResultMap(c *gin.Context) *RstMap {
 	retI, exists := c.Get(ReturnMapKey)
 	if !exists {
 		return setReturnMap(c)
 	}
-	ret, ok := retI.(*ResultMap)
+	ret, ok := retI.(*RstMap)
 	if !ok {
 		return setReturnMap(c)
 	}
@@ -32,16 +32,16 @@ func GetResultMap(c *gin.Context) *ResultMap {
 }
 
 // 设置Return信息到http.context中
-func setReturnMap(c *gin.Context) *ResultMap {
-	ret := &ResultMap{Code: Success.Code}
+func setReturnMap(c *gin.Context) *RstMap {
+	ret := &RstMap{Code: Success.Code}
 	ret.Result = make(map[string]interface{})
 	c.Set(ReturnMapKey, ret)
 	return ret
 }
 
-type ResultMap struct {
-	Code   int                    `json:"return_code,string"`
-	Msg    string                 `json:"return_msg"`
+type RstMap struct {
+	Code   int                    `json:"code,string"`
+	Msg    string                 `json:"msg"`
 	MsgEn  string                 `json:"msg_en"`
-	Result map[string]interface{} `json:"return_data"`
+	Result map[string]interface{} `json:"result"`
 }
