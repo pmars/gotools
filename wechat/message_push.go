@@ -11,7 +11,11 @@ const (
 	TemplateUri = "https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=%s"
 )
 
-type messagePush struct {
+type PushData interface {
+	MergeMessage(msg string) map[string]*TemplateInfo
+}
+
+type MessagePush struct {
 	ToUser string                   `json:"touser"`      // wechat open_id
 	TmpId  string                   `json:"template_id"` //模版id
 	Url    string                   `json:"url"`         // 点击推送消息的链接地址
@@ -20,8 +24,8 @@ type messagePush struct {
 	accessToken *accessToken `json:"-"`
 }
 
-func GetMessagePush(wechatAppId, wechatSecret string) *messagePush {
-	msg := messagePush{}
+func GetMessagePush(wechatAppId, wechatSecret string) *MessagePush {
+	msg := MessagePush{}
 	msg.accessToken = GetAccessToken(wechatAppId, wechatSecret)
 
 	return &msg
@@ -39,7 +43,7 @@ type TemplateInfo struct {
 }
 
 // 这里需要根据自己的模板进行相应的修改，根据自己的喜好来进行调整
-func (message *messagePush) PushSimple(toUser, tmpId, msg string) error {
+func (message *MessagePush) PushSimple(toUser, tmpId, msg string) error {
 	data := map[string]*TemplateInfo{
 		"first":    {"Demo Service ERROR", "#173177"},
 		"keyword1": {"业务错误", "#173177"},
@@ -51,7 +55,7 @@ func (message *messagePush) PushSimple(toUser, tmpId, msg string) error {
 }
 
 // 推送消息
-func (message *messagePush) Push(toUser, url, tmpId string, data map[string]*TemplateInfo) error {
+func (message *MessagePush) Push(toUser, url, tmpId string, data map[string]*TemplateInfo) error {
 	message.TmpId = tmpId
 	message.Url = url
 	message.Data = data
