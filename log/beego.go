@@ -11,7 +11,6 @@ import (
 	"github.com/astaxie/beego/logs"
 	"github.com/pmars/gotools"
 	"github.com/pmars/gotools/wechat"
-	"craftsman/tools"
 )
 
 var (
