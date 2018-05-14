@@ -3,7 +3,6 @@ package log
 import (
 	"encoding/json"
 	"errors"
-	"jiuselu/tools"
 	"os"
 	"time"
 
@@ -12,6 +11,7 @@ import (
 	"github.com/astaxie/beego/logs"
 	"github.com/pmars/gotools"
 	"github.com/pmars/gotools/wechat"
+	"craftsman/tools"
 )
 
 var (
@@ -44,7 +44,7 @@ func InitWechatPush(jsonConf string, initPushData func(string) map[string]*wecha
 func NewWechatPush() logs.Logger {
 	wechatPush := &WechatPush{}
 	wechatPush.HostName, _ = os.Hostname()
-	wechatPush.OuterIp = tools.GetOutboundIP()
+	wechatPush.OuterIp = gotools.GetOutboundIP().String()
 
 	return wechatPush
 }
