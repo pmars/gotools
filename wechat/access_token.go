@@ -50,7 +50,7 @@ func (token *accessToken) RefreshToken() (string, error) {
 	tokenUrl := WxGetTokenUrl + v.Encode()
 
 	if _, _, errs := gorequest.New().Get(tokenUrl).EndStruct(&wt); errs != nil || len(wt.AccessToken) == 0 {
-		return "", fmt.Errorf("get access token error:%v", errs)
+		return "", fmt.Errorf("get access token error:%v, accessToken:%v", errs, wt.AccessToken)
 	}
 
 	token.accessToken = wt.AccessToken

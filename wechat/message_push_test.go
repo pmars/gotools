@@ -6,8 +6,18 @@ import (
 	"time"
 )
 
+/*
+	jsonStr := `{
+		"appId":"wxa4af6593684a4f0b",
+		"secret":"2b2cc3577ff534ae2bc7c54****",
+		"level":3,
+		"tmpId":"IDkJ_4ulcyWgz0flVvwXzlqsvkenbnMV4kU****",
+		"wxIds":["oDncy0udgxSpnL1Dr7TJWLyRI6_g"]
+	}`
+	log.InitWechatPush(jsonStr, initPushData)
+*/
 func TestMessagePush_Push(t *testing.T) {
-	message := GetMessagePush("wx3f3a43ee700b****", "aa8b08b52ed52fe89e53a181****")
+	message := GetMessagePush("wx28ceb68f****", "d46d03e757125776beb58e4c****")
 
 	data := map[string]*TemplateInfo{
 		"first":    {"Demo Service ERROR", "#173177"},
@@ -18,15 +28,15 @@ func TestMessagePush_Push(t *testing.T) {
 	}
 
 	err := message.Push(
-		"oKdl5vz4q_YL9P-VTvUhTXsBrEq8",
+		"oKdl5vz4q_YL9P-VTvUh****",
 		"http://xiaoh.me",
-		"GZuiwMgwXdDyJduA33op5rhf2svf0uOH5N4dxx8Il0Q",
+		"GZuiwMgwXdDyJduA33op5rhf2svf0uOH5****",
 		data)
 	fmt.Println(err)
 
 	err = message.PushSimple(
-		"oKdl5vz4q_YL9P-VTvUhTXsBrEq8",
-		"GZuiwMgwXdDyJduA33op5rhf2svf0uOH5N4dxx8Il0Q",
+		"oKdl5vz4q_YL9P-VTvUhTXs****",
+		"GZuiwMgwXdDyJduA33op5rhf2svf0u****",
 		"testing push message")
 	fmt.Println(err)
 }

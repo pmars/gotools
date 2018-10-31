@@ -31,3 +31,10 @@ func TestAccessToken(t *testing.T) {
 
 	wait.Wait()
 }
+
+func TestAccessTokenOnce(t *testing.T) {
+	access := GetAccessToken("wx28ceb68f61****", "d46d03e757125776beb****")
+	token, err := access.GetToken()
+	fmt.Println(token)
+	fmt.Println(err)
+}
