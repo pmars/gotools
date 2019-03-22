@@ -3,9 +3,10 @@ package gotools
 import "time"
 
 const (
-	TimeFormat = "2006-01-02 15:04:05"
+	MillTimeFormat  = "2006-01-02 15:04:05.999999"
+	TimeFormat      = "2006-01-02 15:04:05"
 	TimeFormatNoSep = "20060102150405"
-	DateFormat = "2006-01-02"
+	DateFormat      = "2006-01-02"
 	DateFormatNoSep = "20060102"
 )
 
