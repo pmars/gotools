@@ -5,8 +5,8 @@ import (
 
 	"net/http"
 
-	"github.com/astaxie/beego/logs"
 	"github.com/gin-gonic/gin"
+	"github.com/pmars/beego/logs"
 	"github.com/pmars/gotools"
 )
 
