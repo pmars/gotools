@@ -21,6 +21,9 @@ var (
 type WechatPush struct {
 	AppId     string   `json:"appId"`
 	Secret    string   `json:"secret"`
+	RedisConn string   `json:"redisConn"`
+	RedisAuth string   `json:"redisAuth"`
+	RedisKey  string   `json:"redisKey"`
 	Level     int      `json:"level"`
 	HostName  string   `json:"host"`
 	OuterIp   string   `json:"ip"`
@@ -61,7 +64,8 @@ func (wechatPush *WechatPush) Init(conf string) error {
 		return errors.New("wechat push args error")
 	}
 
-	wechatPush.message = wechat.GetMessagePush(wechatPush.AppId, wechatPush.Secret)
+	wechatPush.message = wechat.GetMessagePush(wechatPush.AppId, wechatPush.Secret, wechatPush.RedisConn,
+		wechatPush.RedisAuth, wechatPush.RedisKey)
 
 	return nil
 }

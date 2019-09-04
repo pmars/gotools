@@ -24,9 +24,9 @@ type MessagePush struct {
 	accessToken *accessToken `json:"-"`
 }
 
-func GetMessagePush(wechatAppId, wechatSecret string) *MessagePush {
+func GetMessagePush(wechatAppId, wechatSecret, redisConn, redisAuth, redisKey string) *MessagePush {
 	msg := MessagePush{}
-	msg.accessToken = GetAccessToken(wechatAppId, wechatSecret)
+	msg.accessToken = GetAccessToken(wechatAppId, wechatSecret, redisConn, redisAuth, redisKey)
 
 	return &msg
 }
@@ -89,7 +89,7 @@ func (message *MessagePush) Push(toUser, url, tmpId string, data map[string]*Tem
 			_, _, errs = request.Post(tmpUri).SendStruct(message).EndStruct(&pushReturn)
 
 			if err != nil || pushReturn.ErrCode != 0 {
-				fmt.Sprintf("Post Template To Wechat ERROR:%v", err.Error())
+				fmt.Printf("Post Template To Wechat ERROR:%v", err.Error())
 			}
 		}
 	}

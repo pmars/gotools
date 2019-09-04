@@ -8,7 +8,7 @@ import (
 
 func TestAccessToken(t *testing.T) {
 	wait := sync.WaitGroup{}
-	access := GetAccessToken("wx3f3a43ee70***", "1e97654e0560535bbb0***")
+	access := GetAccessToken("wx3f3a43ee70***", "1e97654e0560535bbb0***", "", "", "")
 	for i := 0; i < 100000; i++ {
 		wait.Add(1)
 		go func() {
@@ -33,7 +33,7 @@ func TestAccessToken(t *testing.T) {
 }
 
 func TestAccessTokenOnce(t *testing.T) {
-	access := GetAccessToken("wx28ceb68f61****", "d46d03e757125776beb****")
+	access := GetAccessToken("wx28ceb68f61****", "d46d03e757125776beb****", "", "", "")
 	token, err := access.GetToken()
 	fmt.Println(token)
 	fmt.Println(err)

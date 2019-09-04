@@ -17,7 +17,12 @@ import (
 	log.InitWechatPush(jsonStr, initPushData)
 */
 func TestMessagePush_Push(t *testing.T) {
-	message := GetMessagePush("wx28ceb68f****", "d46d03e757125776beb58e4c****")
+	message := GetMessagePush(
+		"wx74c099e4******",
+		"4a83e84f6d61e0956******",
+		"******",
+		"******",
+		"weixin:access_token_info")
 
 	data := map[string]*TemplateInfo{
 		"first":    {"Demo Service ERROR", "#173177"},
@@ -28,15 +33,15 @@ func TestMessagePush_Push(t *testing.T) {
 	}
 
 	err := message.Push(
-		"oKdl5vz4q_YL9P-VTvUh****",
+		"oaJdSs2Y9kuRUyed6******",
 		"http://xiaoh.me",
-		"GZuiwMgwXdDyJduA33op5rhf2svf0uOH5****",
+		"fG087aPIU794RyQy******",
 		data)
 	fmt.Println(err)
 
 	err = message.PushSimple(
-		"oKdl5vz4q_YL9P-VTvUhTXs****",
-		"GZuiwMgwXdDyJduA33op5rhf2svf0u****",
+		"oaJdSs2Y9kuRUy******",
+		"fG087aPIU794RyQyUGXk******",
 		"testing push message")
 	fmt.Println(err)
 }
