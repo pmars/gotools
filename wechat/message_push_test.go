@@ -18,11 +18,11 @@ import (
 */
 func TestMessagePush_Push(t *testing.T) {
 	message := GetMessagePush(
-		"wx74c099e4******",
-		"4a83e84f6d61e0956******",
-		"******",
-		"******",
-		"weixin:access_token_info")
+		"wx74c09********",
+		"4a83e8********",
+		"********",
+		"********",
+		"********")
 
 	data := map[string]*TemplateInfo{
 		"first":    {"Demo Service ERROR", "#173177"},
@@ -33,15 +33,15 @@ func TestMessagePush_Push(t *testing.T) {
 	}
 
 	err := message.Push(
-		"oaJdSs2Y9kuRUyed6******",
+		"oaJdSs2Y********",
 		"http://xiaoh.me",
-		"fG087aPIU794RyQy******",
+		"fG087aPIU7********",
 		data)
 	fmt.Println(err)
 
 	err = message.PushSimple(
-		"oaJdSs2Y9kuRUy******",
-		"fG087aPIU794RyQyUGXk******",
+		"oaJdSs2********",
+		"fG087aPIU7********",
 		"testing push message")
 	fmt.Println(err)
 }

@@ -87,6 +87,7 @@ func (token *accessToken) GetToken() (string, error) {
 
 func (token *accessToken) getToken() (string, error) {
 	// 如果没有用到Redis存储，则判断是否有_accessToken字段
+	fmt.Println("token.redisTokenKey", token.redisTokenKey)
 	if token.redisTokenKey == "" {
 		if token._accessToken != "" {
 			// 如果有，则直接返回
@@ -104,6 +105,8 @@ func (token *accessToken) getToken() (string, error) {
 	v, err := redis.Values(conn.Do("HGETALL", token.redisTokenKey))
 	if err == nil {
 		err = redis.ScanStruct(v, &aToken)
+	} else {
+		fmt.Println("redis HGETALL ERROR:", err.Error())
 	}
 
 	if pRedis.RedisOK(err) == nil {
@@ -123,7 +126,7 @@ func (token *accessToken) setToken(tk string, expiresIn int) error {
 		aToken := wechatToken{
 			AccessToken: tk,
 			ExpiresIn:   expiresIn,
-			ExpiresTime: expiresIn,
+			ExpiresTime: expiresIn + int(time.Now().Unix()),
 		}
 		_, err := redis.String(conn.Do("HMSET", redis.Args{}.Add(token.redisTokenKey).AddFlat(aToken)...))
 		return pRedis.RedisOK(err)
