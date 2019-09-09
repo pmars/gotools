@@ -43,9 +43,9 @@ func GetAccessToken(appId, secret, redisConn, redisAuth, redisKey string) *acces
 }
 
 type wechatToken struct {
-	AccessToken string `json:"access_token"`
-	ExpiresIn   int    `json:"expires_in"`
-	ExpiresTime int    `json:"expires_time"`
+	AccessToken string `json:"access_token" redis:"access_token"`
+	ExpiresIn   int    `json:"expires_in" redis:"expires_in"`
+	ExpiresTime int    `json:"expires_time" redis:"expires_time"`
 }
 
 // 网络请求微信服务，获取AccessToken
