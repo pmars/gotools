@@ -15,6 +15,7 @@ require (
 	github.com/moul/http2curl v1.0.0 // indirect
 	github.com/parnurzeal/gorequest v0.2.15
 	github.com/pmars/beego v1.11.3
+	github.com/satori/go.uuid v1.2.0
 	github.com/smartystreets/goconvey v0.0.0-20190306220146-200a235640ff // indirect
 	github.com/stretchr/testify v1.3.0 // indirect
 	github.com/ugorji/go/codec v0.0.0-20190320090025-2dc34c0b8780 // indirect

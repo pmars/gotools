@@ -7,7 +7,7 @@ const (
 )
 
 var (
-	Success = ReturnCode{6000, "Success", "Success"}
+	Success = ReturnCode{0, "Success", "Success"}
 
 	ErrArgs            = ReturnCode{6002, "参数错误", "Args Error"}
 	ErrNoData          = ReturnCode{6012, "没有查询记录", "Args Error"}
@@ -15,9 +15,6 @@ var (
 	ErrUserDisabled    = ReturnCode{6011, "用户已被禁用", "User Disabled"}
 	ErrUserRoleLimited = ReturnCode{6101, "用户角色错误", "User Role Error"}
 	ErrSQLErr          = ReturnCode{6013, "数据获取失败", "data Error"}
-
-	ErrRsaDecrypt = ReturnCode{6200, "九色鹿数据解密错误", "Rsa Decrypt Error"}
-	ErrDataFormat = ReturnCode{6200, "九色鹿数据格式错误", "Data Format Error"}
 
 	ErrServer = ReturnCode{50000, "网络开小差了，一会儿再来试试吧~", "Server Error"}
 )
