@@ -61,8 +61,8 @@ func (token *accessToken) RefreshToken() (string, error) {
 	wt := wechatToken{}
 	tokenUrl := WxGetTokenUrl + v.Encode()
 
-	if _, _, errs := gorequest.New().Get(tokenUrl).EndStruct(&wt); errs != nil || len(wt.AccessToken) == 0 {
-		return "", fmt.Errorf("get access token error:%v, accessToken:%v", errs, wt.AccessToken)
+	if _, body, errs := gorequest.New().Get(tokenUrl).EndStruct(&wt); errs != nil || len(wt.AccessToken) == 0 {
+		return "", fmt.Errorf("get access token error:%v, tokenUrl:%v result:%v", errs, tokenUrl, string(body))
 	}
 
 	token.setToken(wt.AccessToken, wt.ExpiresIn)
